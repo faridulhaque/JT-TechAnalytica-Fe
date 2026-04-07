@@ -38,11 +38,11 @@ function LoginForm() {
 
     try {
       const result: any = await login(payload);
+      console.log("result", result);
 
-      if (result?.data?.token) {
-        localStorage.setItem("token", result.data.token);
-        alert("Sign In Successful");
-        router.push("/");
+      if (result?.data?.data?.token) {
+        localStorage.setItem("token", result.data.data?.token);
+        router.push("/dashboard");
       }
     } catch (error) {
       alert("Failed to Sign In");
@@ -51,50 +51,56 @@ function LoginForm() {
   useEffect(() => {
     setIsClient(true);
   }, []);
-  
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl"
-    >
-      <div className="card-body">
-        <fieldset className="fieldset">
-          <label className="label">Username</label>
-          <input
-            name="username"
-            type="text"
-            className="input"
-            placeholder="Username"
-          />
+    <>
+      {isClient ? (
+        <form
+          onSubmit={handleSubmit}
+          className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl"
+        >
+          <div className="card-body">
+            <fieldset className="fieldset">
+              <label className="label">Username</label>
+              <input
+                name="username"
+                type="text"
+                className="input"
+                placeholder="Username"
+              />
 
-          <label className="label">Password</label>
-          <input
-            name="password"
-            type={viewPassword ? "text" : "password"}
-            className="input"
-            placeholder="Password"
-          />
+              <label className="label">Password</label>
+              <input
+                name="password"
+                type={viewPassword ? "text" : "password"}
+                className="input"
+                placeholder="Password"
+              />
 
-          <label className="label my-3">
-            <input
-              onChange={(e) => setViewPassword(e.target.checked)}
-              type="checkbox"
-              checked={viewPassword}
-              className="checkbox"
-            />
-            View Password
-          </label>
+              <label className="label my-3">
+                <input
+                  onChange={(e) => setViewPassword(e.target.checked)}
+                  type="checkbox"
+                  checked={viewPassword}
+                  className="checkbox"
+                />
+                View Password
+              </label>
 
-          <button
-            type="submit"
-            className="btn btn-neutral mt-4"
-            disabled={loggingIn}
-          >
-            {loggingIn ? "Logging in..." : "Login"}
-          </button>
-        </fieldset>
-      </div>
-    </form>
+              <button
+                type="submit"
+                className="btn btn-neutral mt-4"
+                disabled={loggingIn}
+              >
+                {loggingIn ? "Logging in..." : "Login"}
+              </button>
+            </fieldset>
+          </div>
+        </form>
+      ) : (
+        <></>
+      )}
+    </>
   );
 }
 
