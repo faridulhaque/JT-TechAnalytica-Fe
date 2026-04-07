@@ -29,7 +29,7 @@ export default function RootLayout({
         <body>
           {children}
 
-          <ToastContainer
+          {/* <ToastContainer
             position="bottom-center"
             autoClose={5000}
             hideProgressBar={false}
@@ -40,7 +40,7 @@ export default function RootLayout({
             draggable
             pauseOnHover
             theme="light"
-          />
+          /> */}
         </body>
       </Provider>
     </html>
