@@ -10,8 +10,15 @@ const authApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+
+    checkAuth: builder.query({
+      query: () => ({
+        url: "/auth/check",
+        method: "GET",
+      }),
+    }),
   }),
   // overrideExisting: true,
 });
 
-export const { useLoginMutation } = authApi;
+export const { useLoginMutation, useCheckAuthQuery } = authApi;

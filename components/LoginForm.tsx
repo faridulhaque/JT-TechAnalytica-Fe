@@ -48,59 +48,50 @@ function LoginForm() {
       alert("Failed to Sign In");
     }
   };
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   return (
-    <>
-      {isClient ? (
-        <form
-          onSubmit={handleSubmit}
-          className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl"
-        >
-          <div className="card-body">
-            <fieldset className="fieldset">
-              <label className="label">Username</label>
-              <input
-                name="username"
-                type="text"
-                className="input"
-                placeholder="Username"
-              />
+    <form
+      onSubmit={handleSubmit}
+      className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl"
+    >
+      <div className="card-body">
+        <fieldset className="fieldset">
+          <label className="label">Username</label>
+          <input
+            name="username"
+            type="text"
+            className="input"
+            placeholder="Username"
+          />
 
-              <label className="label">Password</label>
-              <input
-                name="password"
-                type={viewPassword ? "text" : "password"}
-                className="input"
-                placeholder="Password"
-              />
+          <label className="label">Password</label>
+          <input
+            name="password"
+            type={viewPassword ? "text" : "password"}
+            className="input"
+            placeholder="Password"
+          />
 
-              <label className="label my-3">
-                <input
-                  onChange={(e) => setViewPassword(e.target.checked)}
-                  type="checkbox"
-                  checked={viewPassword}
-                  className="checkbox"
-                />
-                View Password
-              </label>
+          <label className="label my-3">
+            <input
+              onChange={(e) => setViewPassword(e.target.checked)}
+              type="checkbox"
+              checked={viewPassword}
+              className="checkbox"
+            />
+            View Password
+          </label>
 
-              <button
-                type="submit"
-                className="btn btn-neutral mt-4"
-                disabled={loggingIn}
-              >
-                {loggingIn ? "Logging in..." : "Login"}
-              </button>
-            </fieldset>
-          </div>
-        </form>
-      ) : (
-        <></>
-      )}
-    </>
+          <button
+            type="submit"
+            className="btn btn-neutral mt-4"
+            disabled={loggingIn}
+          >
+            {loggingIn ? "Logging in..." : "Login"}
+          </button>
+        </fieldset>
+      </div>
+    </form>
   );
 }
 

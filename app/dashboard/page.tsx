@@ -1,7 +1,6 @@
-import LoginForm from "@/components/LoginForm";
+import DashboardSidebar from "@/components/DashboardSidebar";
 import Logout from "@/components/Logout";
-import Image from "next/image";
-import Link from "next/link";
+
 
 export default function dashboard() {
   return (
@@ -28,14 +27,7 @@ export default function dashboard() {
 
         <div className="menu bg-base-200 min-h-full w-80 p-4 flex flex-col">
           {/* Top items */}
-          <ul>
-            <li>
-              <Link href="/dashboard">Dashboard</Link>
-            </li>
-            <li>
-              <Link href="/audit-logs">Audit Logs</Link>
-            </li>
-          </ul>
+          <DashboardSidebar></DashboardSidebar>
 
           <Logout></Logout>
         </div>
