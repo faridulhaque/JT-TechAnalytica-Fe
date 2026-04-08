@@ -29,16 +29,18 @@ A simple task management app where users are assigned tasks by an admin, can upd
     ```bash
     cd JT-TechAnalytica-Be
 
-3. **Start Docker and run the command**-
+3. **Start Docker and run the command**
 
     ```bash
    docker compose up --build
+
+4. **Hit http://localhost:3000 to access the frontend UI.**
    
-4. **Use these credentials for normal user login**
+5. **Use these credentials for normal user login**
     - Username: user1
     - Password: pass1234
 
-5. **Use these credentials for admin login**
+6. **Use these credentials for admin login**
     - Username: admin
     - Password: pass1234
 
