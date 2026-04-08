@@ -47,7 +47,9 @@ function TaskList({ user }: TTaskList) {
 
 
   return (
-    <div className="w-full mt-10">
+    <div className="w-full">
+      <h2 className="text-xl font-semibold mb-4 pt-3">Dashboard</h2>
+
       {/* TABLE (md and up) */}
       <div className="hidden md:block overflow-x-auto bg-base-100 rounded-xl border border-base-200 shadow-sm">
         <table className="table w-full">

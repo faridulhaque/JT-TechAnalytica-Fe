@@ -78,7 +78,7 @@ function EditTaskForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="card bg-base-100 w-full shadow-xl border border-base-200 pt-10"
+      className="card bg-base-100 w-full shadow-xl border border-base-200 mt-10"
     >
       <div className="card-body p-6 sm:p-8 gap-4">
         <h2 className="text-xl font-semibold text-center">Edit Task</h2>

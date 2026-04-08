@@ -27,10 +27,10 @@ const othersApi = apiSlice.injectEndpoints({
 
     updateTaskStatus: builder.mutation({
       query: (data: {
-        id: string;
+        taskId: string;
         status: 'PENDING' | "PROCESSING" | "DONE"
       }) => ({
-        url: `/task/${data?.id}/status`,
+        url: `/task/${data?.taskId}/status`,
         method: "PATCH",
         body: data,
       }),
