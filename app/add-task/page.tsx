@@ -1,4 +1,5 @@
 "use client";
+import AddTaskForm from "@/components/AddTaskForm";
 import DashboardSidebar from "@/components/DashboardSidebar";
 import Logout from "@/components/Logout";
 import { useCheckAuthQuery } from "@/Services/queries/authApi";
@@ -26,7 +27,9 @@ export default function dashboard() {
           Open Sidebar
         </label>
 
-        <div className="h-full w-full bg-green-500"></div>
+        <div className="min-h-screen flex items-center justify-center p-4">
+          <AddTaskForm user={user} />
+        </div>
       </div>
 
       <div className="drawer-side">

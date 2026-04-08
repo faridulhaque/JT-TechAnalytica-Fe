@@ -9,7 +9,7 @@ function Logout() {
       <button
         onClick={() => {
           localStorage.removeItem("token");
-          router.push("/dashboard");
+          router.push("/");
         }}
         className="btn btn-primary w-full"
       >

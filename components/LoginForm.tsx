@@ -5,8 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 function LoginForm() {
-  const [isClient, setIsClient] = useState(false);
-
+  const [loading, setLoading] = useState(true)
   const [viewPassword, setViewPassword] = useState(false);
   const [login, { isLoading: loggingIn }] = useLoginMutation<any>();
   const router = useRouter();
@@ -48,6 +47,14 @@ function LoginForm() {
       alert("Failed to Sign In");
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token") || "";
+    if (token) return router.push("/dashboard");
+    else return setLoading(false)
+  }, []);
+
+  if(loading) return <h2 className="text-center text-3xl text-green-500 py-10">Loading...</h2>
 
   return (
     <form

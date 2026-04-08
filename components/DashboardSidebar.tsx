@@ -1,11 +1,14 @@
 "use client";
 import { useCheckAuthQuery } from "@/Services/queries/authApi";
+import { TUser } from "@/Services/types";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+type TSidebar = {
+  user: TUser,
+}
 
-function DashboardSidebar() {
-  const { data, isLoading: isChecking } = useCheckAuthQuery("");
-  const user = (data as any)?.data;
+function DashboardSidebar({user}: TSidebar) {
+ 
 
   return (
     <ul>

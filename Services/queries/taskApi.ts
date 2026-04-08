@@ -27,6 +27,12 @@ const othersApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["tasks"],
     }),
+    getEmployees: builder.query({
+      query: () => ({
+        url: `/task/employees`,
+        method: "GET",
+      }),
+    }),
 
     getOneTask: builder.query({
       query: (id: string) => ({
@@ -62,4 +68,5 @@ export const {
   useAddTaskMutation,
   useDeleteTaskMutation,
   useChangeStatusMutation,
+  useGetEmployeesQuery
 } = othersApi;
