@@ -16,6 +16,13 @@ export type TCreateTask = {
   employeeId: string;
 };
 
+export type TUpdateTask = {
+  taskId: string;
+  title: string;
+  description?: string;
+  employeeId: string;
+};
+
 export type TTask = {
   id: string;
   title: string;

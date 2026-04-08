@@ -1,7 +1,8 @@
 "use client";
+import AddTaskForm from "@/components/AddTaskForm";
 import DashboardSidebar from "@/components/DashboardSidebar";
+import EditTaskForm from "@/components/EditTaskForm";
 import Logout from "@/components/Logout";
-import TaskList from "@/components/TaskList";
 import { useCheckAuthQuery } from "@/Services/queries/authApi";
 import { useRouter } from "next/navigation";
 
@@ -28,7 +29,7 @@ export default function dashboard() {
         </label>
 
         <div className="min-h-screen flex items-center justify-center p-4">
-          <TaskList user={user} />
+          <EditTaskForm></EditTaskForm>
         </div>
       </div>
 

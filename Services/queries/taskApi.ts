@@ -1,4 +1,5 @@
 import { apiSlice } from "../apiSlice";
+import { TUpdateTask } from "../types";
 
 const othersApi = apiSlice.injectEndpoints({
   endpoints: (builder: any) => ({
@@ -12,9 +13,25 @@ const othersApi = apiSlice.injectEndpoints({
     }),
 
     updateTask: builder.mutation({
-      query: (data: any) => ({
-        url: "/task",
+      query: (data: TUpdateTask) => ({
+        url: `/task/${data?.taskId}`,
         method: "PUT",
+        body: {
+          title: data?.title,
+          description: data?.description,
+          employeeId: data?.employeeId
+        },
+      }),
+      invalidatesTags: ["tasks"],
+    }),
+
+    updateTaskStatus: builder.mutation({
+      query: (data: {
+        id: string;
+        status: 'PENDING' | "PROCESSING" | "DONE"
+      }) => ({
+        url: `/task/${data?.id}/status`,
+        method: "PATCH",
         body: data,
       }),
       invalidatesTags: ["tasks"],
@@ -53,7 +70,7 @@ const othersApi = apiSlice.injectEndpoints({
     deleteTask: builder.mutation({
       query: (id: string) => {
         return {
-          url: `/task`,
+          url: `/task/${id}`,
           method: "DELETE",
         };
       },
@@ -66,7 +83,10 @@ const othersApi = apiSlice.injectEndpoints({
 
 export const {
   useAddTaskMutation,
+  useUpdateTaskMutation,
   useDeleteTaskMutation,
   useChangeStatusMutation,
-  useGetEmployeesQuery
+  useGetEmployeesQuery,
+  useGetTasksQuery,
+  useUpdateTaskStatusMutation
 } = othersApi;
