@@ -54,53 +54,64 @@ function AddTaskForm({ user }: AddTaskFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="card bg-base-100 w-full max-w-md shadow-xl"
+      className="card bg-base-100 w-full shadow-xl border border-base-200 mt-10"
     >
-      <div className="card-body">
-        <h2 className="text-xl font-bold">Add Task</h2>
+      <div className="card-body p-6 sm:p-8 gap-4">
+        <h2 className="text-xl font-semibold text-center">Add Task</h2>
 
-        <label className="label">Title</label>
-        <input
-          name="title"
-          value={form.title}
-          onChange={handleChange}
-          type="text"
-          className="input"
-          placeholder="Task title"
-        />
+        {/* Title */}
+        <div className="flex flex-col gap-1">
+          <label className="label-text">Title</label>
+          <input
+            name="title"
+            value={form.title}
+            onChange={handleChange}
+            type="text"
+            className="input input-bordered w-full"
+            placeholder="Enter task title"
+          />
+        </div>
 
-        <label className="label">Description</label>
-        <input
-          name="description"
-          value={form.description}
-          onChange={handleChange}
-          type="text"
-          className="input"
-          placeholder="Task description"
-        />
+        {/* Description */}
+        <div className="flex flex-col gap-1">
+          <label className="label-text">Description</label>
+          <input
+            name="description"
+            value={form.description}
+            onChange={handleChange}
+            type="text"
+            className="input input-bordered w-full"
+            placeholder="Enter task description"
+          />
+        </div>
 
-        <label className="label">Assign Employee</label>
-        <select
-          name="employeeId"
-          value={form.employeeId}
-          onChange={handleChange}
-          className="select"
-        >
-          <option value="">Select employee</option>
-          {employeeLoading ? (
-            <option disabled>Loading...</option>
-          ) : (
-            employees?.map((emp) => (
-              <option key={emp?.id} value={emp?.id}>
-                {emp?.username}
-              </option>
-            ))
-          )}
-        </select>
+        {/* Employee */}
+        <div className="flex flex-col gap-1">
+          <label className="label-text">Assign Employee</label>
+          <select
+            name="employeeId"
+            value={form.employeeId}
+            onChange={handleChange}
+            className="select select-bordered w-full"
+          >
+            <option value="">Select employee</option>
 
+            {employeeLoading ? (
+              <option disabled>Loading...</option>
+            ) : (
+              employees?.map((emp) => (
+                <option key={emp?.id} value={emp?.id}>
+                  {emp?.username}
+                </option>
+              ))
+            )}
+          </select>
+        </div>
+
+        {/* Submit */}
         <button
           type="submit"
-          className="btn btn-neutral mt-4"
+          className="btn btn-neutral w-full mt-2"
           disabled={addingTask}
         >
           {addingTask ? "Adding..." : "Add Task"}

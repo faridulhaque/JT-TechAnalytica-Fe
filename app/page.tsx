@@ -3,8 +3,10 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <LoginForm></LoginForm>
+    <div className="min-h-screen flex items-center justify-center bg-base-200 px-4">
+      <div className="w-full max-w-md">
+        <LoginForm />
+      </div>
     </div>
   );
 }

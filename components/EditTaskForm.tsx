@@ -7,6 +7,7 @@ import {
 import { TCreateTask, TUser, TTask, TUpdateTask } from "@/Services/types";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import Loading from "./Loading";
 
 function EditTaskForm() {
   const { id } = useParams();
@@ -72,43 +73,53 @@ function EditTaskForm() {
     }
   };
 
-  if (!existingTask) return <p className="text-center py-10">Loading...</p>;
+  if (!existingTask) return <Loading></Loading>;
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <form
-        onSubmit={handleSubmit}
-        className="card bg-base-100 w-full max-w-md shadow-xl"
-      >
-        <div className="card-body">
-          <h2 className="text-xl font-bold">Edit Task</h2>
+    <form
+      onSubmit={handleSubmit}
+      className="card bg-base-100 w-full shadow-xl border border-base-200 pt-10"
+    >
+      <div className="card-body p-6 sm:p-8 gap-4">
+        <h2 className="text-xl font-semibold text-center">Edit Task</h2>
 
-          <label className="label">Title</label>
+        {/* Title */}
+        <div className="flex flex-col gap-1">
+          <label className="label-text">Title</label>
           <input
             name="title"
             value={form?.title}
             onChange={handleChange}
             type="text"
-            className="input w-full"
+            className="input input-bordered w-full"
+            placeholder="Enter task title"
           />
+        </div>
 
-          <label className="label">Description</label>
+        {/* Description */}
+        <div className="flex flex-col gap-1">
+          <label className="label-text">Description</label>
           <input
             name="description"
             value={form?.description}
             onChange={handleChange}
             type="text"
-            className="input w-full"
+            className="input input-bordered w-full"
+            placeholder="Enter task description"
           />
+        </div>
 
-          <label className="label">Assign Employee</label>
+        {/* Employee */}
+        <div className="flex flex-col gap-1">
+          <label className="label-text">Assign Employee</label>
           <select
             name="employeeId"
             value={form?.employeeId}
             onChange={handleChange}
-            className="select w-full"
+            className="select select-bordered w-full"
           >
             <option value="">Select employee</option>
+
             {employeeLoading ? (
               <option disabled>Loading...</option>
             ) : (
@@ -119,17 +130,18 @@ function EditTaskForm() {
               ))
             )}
           </select>
-
-          <button
-            type="submit"
-            className="btn btn-neutral mt-4"
-            disabled={updating}
-          >
-            {updating ? "Updating..." : "Update Task"}
-          </button>
         </div>
-      </form>
-    </div>
+
+        {/* Submit */}
+        <button
+          type="submit"
+          className="btn btn-neutral w-full mt-2"
+          disabled={updating}
+        >
+          {updating ? "Updating..." : "Update Task"}
+        </button>
+      </div>
+    </form>
   );
 }
 

@@ -8,7 +8,7 @@ function Logout() {
   const router = useRouter();
   const dispatch = useDispatch();
   return (
-    <div className="mt-auto">
+    <div className="mt-auto pt-4 border-t border-base-200">
       <button
         onClick={() => {
           dispatch(apiSlice.util.resetApiState());

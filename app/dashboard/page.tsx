@@ -16,34 +16,42 @@ export default function dashboard() {
   }
 
   return (
-    <div className="drawer lg:drawer-open">
+    <div className="drawer lg:drawer-open min-h-screen bg-base-200">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
 
-      <div className="drawer-content">
-        <label
-          htmlFor="my-drawer-3"
-          className="btn drawer-button lg:hidden mt-5"
-        >
-          Open Sidebar
-        </label>
+      {/* CONTENT */}
+      <div className="drawer-content flex flex-col">
+        {/* Top bar (mobile) */}
+        <div className="flex items-center justify-between p-4 lg:hidden">
+          <label htmlFor="my-drawer-3" className="btn btn-outline btn-sm">
+            ☰
+          </label>
+          <h2 className="font-semibold text-lg">Tasks</h2>
+          <div />
+        </div>
 
-        <div className="min-h-screen flex items-center justify-center p-4">
+        {/* Main content */}
+        <div className="flex-1 w-full max-w-6xl mx-auto px-4 pb-6">
           <TaskList user={user} />
         </div>
       </div>
 
+      {/* SIDEBAR */}
       <div className="drawer-side">
         <label
           htmlFor="my-drawer-3"
           aria-label="close sidebar"
           className="drawer-overlay"
-        ></label>
+        />
 
-        <div className="menu bg-base-200 min-h-full w-80 p-4 flex flex-col">
-          {/* Top items */}
-          <DashboardSidebar user={user}></DashboardSidebar>
+        <div className="menu bg-base-100 min-h-full w-72 p-4 flex flex-col border-r border-base-200">
+          <div className="flex-1">
+            <DashboardSidebar user={user} />
+          </div>
 
-          <Logout></Logout>
+          <div className="pt-4 border-t border-base-200">
+            <Logout />
+          </div>
         </div>
       </div>
     </div>
