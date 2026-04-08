@@ -1,4 +1,4 @@
-# 🗂️ Task Management App
+# 🗂️ Task Management App (Frontend)
 
 
 ## 🚀 Overview
@@ -23,7 +23,8 @@ A simple task management app where users are assigned tasks by an admin, can upd
 
 1. **Clone the BACKEND repository, navigate to the project folder & use docker**
    ```bash
-   git clone https://github.com/faridulhaque/JT-TechAnalytica-Be
+   
+   git clone https://github.com/faridulhaque/JT-TechAnalytica-Be.git
 
    cd JT-TechAnalytica-Be
 
