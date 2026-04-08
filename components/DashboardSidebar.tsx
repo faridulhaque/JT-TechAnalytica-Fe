@@ -18,7 +18,7 @@ function DashboardSidebar({user}: TSidebar) {
       {user?.role === "admin" && (
         <>
           <li>
-            <Link href="/audit-logs">Audit Logs</Link>
+            <Link href="/audit-log">Audit Logs</Link>
           </li>
           <li>
             <Link href="/add-task">Add Task</Link>
