@@ -1,0 +1,6 @@
+services:
+  info:
+    image: alpine
+    command: >
+      sh -c "echo '⚠️  This frontend repo is not meant to run standalone.
+      Please clone the backend repo (https://github.com/faridulhaque/JT-TechAnalytica-Be.git) and run: docker compose up' && sleep 5"
