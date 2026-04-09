@@ -68,6 +68,7 @@ function TaskList({ user }: TTaskList) {
               {user?.role === "employee" && <th>Assigner</th>}
 
               <th>Created</th>
+              <th>Updated</th>
               <th>Status</th>
 
               {user?.role === "admin" && (
@@ -95,6 +96,11 @@ function TaskList({ user }: TTaskList) {
 
                 <td className="text-sm">
                   {task?.createdAt
+                    ? new Date(task.createdAt).toLocaleDateString()
+                    : ""}
+                </td>
+                <td className="text-sm">
+                  {task?.updatedAt
                     ? new Date(task.createdAt).toLocaleDateString()
                     : ""}
                 </td>
