@@ -1,19 +1,25 @@
 "use client";
 import DashboardSidebar from "@/components/DashboardSidebar";
+import Loading from "@/components/Loading";
 import Logout from "@/components/Logout";
 import TaskList from "@/components/TaskList";
 import { useCheckAuthQuery } from "@/Services/queries/authApi";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function dashboard() {
   const router = useRouter();
   const { data, isLoading: isChecking, isError } = useCheckAuthQuery("");
   const user = (data as any)?.data;
 
-  if (isError) {
-    localStorage.removeItem("token");
-    window.location.href = "/";
-  }
+  useEffect(() => {
+    if (isChecking) return;
+
+    if (isError) {
+      localStorage.removeItem("token");
+      router.replace("/");
+    }
+  }, [isError, isChecking]);
 
   return (
     <div className="drawer lg:drawer-open min-h-screen bg-base-200">

@@ -4,8 +4,11 @@ import { LoginData } from "@/Services/types";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Loading from "./Loading";
+import { useDispatch } from "react-redux";
+import { apiSlice } from "@/Services/apiSlice";
 
 function LoginForm() {
+  const dispatch = useDispatch()
   const [loading, setLoading] = useState(true);
   const [viewPassword, setViewPassword] = useState(false);
   const [login, { isLoading: loggingIn }] = useLoginMutation<any>();
@@ -37,13 +40,14 @@ function LoginForm() {
     }
 
     try {
-      const result: any = await login(payload);
-      console.log("result", result);
+     const result:any = await login(payload).unwrap();
 
-      if (result?.data?.data?.token) {
-        localStorage.setItem("token", result.data.data?.token);
+      if (result?.data?.token) {
+        localStorage.setItem("token", result?.data?.token);
+        dispatch(apiSlice.util.resetApiState());
         router.push("/dashboard");
       }
+      else alert('Failed to sign in')
     } catch (error) {
       alert("Failed to Sign In");
     }
@@ -51,7 +55,7 @@ function LoginForm() {
 
   useEffect(() => {
     const token = localStorage.getItem("token") || "";
-    if (token) return router.push("/dashboard");
+    if (token) return router.replace("/dashboard");
     else return setLoading(false);
   }, []);
 

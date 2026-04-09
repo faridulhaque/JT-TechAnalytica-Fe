@@ -4,16 +4,26 @@ import DashboardSidebar from "@/components/DashboardSidebar";
 import Logout from "@/components/Logout";
 import { useCheckAuthQuery } from "@/Services/queries/authApi";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function dashboard() {
   const router = useRouter();
   const { data, isLoading: isChecking, isError } = useCheckAuthQuery("");
   const user = (data as any)?.data;
 
-  if (isError) {
-    localStorage.removeItem("token");
-    window.location.href = "/";
-  }
+  useEffect(() => {
+    if (isChecking) return;
+
+    if (isError || !user) {
+      localStorage.removeItem("token");
+      router.replace("/");
+      return;
+    }
+
+    if (user.role !== "admin") {
+      router.replace("/dashboard");
+    }
+  }, [isChecking, isError, user]);
 
   return (
     <div className="drawer lg:drawer-open min-h-screen bg-base-200">
